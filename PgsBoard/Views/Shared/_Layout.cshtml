@@ -1,0 +1,17 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - PGS Board</title>
+    @Styles.Render("~/bundles/bootstrap")
+    @Styles.Render("~/bundles/site")
+</head>
+<body>
+@Html.Partial("_Navbar")
+<main>
+    @RenderBody()
+</main>
+@Scripts.Render("~/bundles/scripts/jquery")
+@Scripts.Render("~/bundles/scripts/bootstrap")
+@Scripts.Render("~/bundles/scripts/site")
+@RenderSection("scripts", required: false)
+</body>

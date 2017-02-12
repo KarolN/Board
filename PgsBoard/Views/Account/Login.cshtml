@@ -1,0 +1,25 @@
+﻿@model PgsBoard.ViewModels.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm("Login", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <article class="container">
+        <section class="row form-group">
+            @Html.LabelFor(m => m.LoginDto.Username)
+            @Html.TextBoxFor(m => m.LoginDto.Username, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.LoginDto.Username)
+        </section>
+        <section class="row form-group">
+            @Html.LabelFor(m => m.LoginDto.Password)
+            @Html.TextBoxFor(m => m.LoginDto.Password, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.LoginDto.Password)
+        </section>
+        <section class="row">
+            <input class="btn btn-primary" type="submit" value="Zarejestruj"/>
+        </section>
+    </article>
+}

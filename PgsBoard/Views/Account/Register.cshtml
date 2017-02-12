@@ -1,0 +1,30 @@
+﻿@model PgsBoard.ViewModels.RegisterViewModel
+
+@{
+    ViewBag.Title = "Rejestracja";
+}
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <article class="container">
+        <section class="row form-group">
+            @Html.LabelFor(m => m.RegisterUserDto.Username)
+            @Html.TextBoxFor(m => m.RegisterUserDto.Username, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.RegisterUserDto.Username)
+        </section>
+        <section class="row form-group">
+            @Html.LabelFor(m => m.RegisterUserDto.Email)
+            @Html.TextBoxFor(m => m.RegisterUserDto.Email, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.RegisterUserDto.Email)
+        </section>
+        <section class="row form-group">
+            @Html.LabelFor(m => m.RegisterUserDto.Password)
+            @Html.PasswordFor(m => m.RegisterUserDto.Password, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.RegisterUserDto.Password)
+        </section>
+        <section class="row">
+            <input class="btn btn-primary" type="submit" value="Zarejestruj"/>
+        </section>
+    </article>
+}
