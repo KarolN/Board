@@ -8,7 +8,7 @@ namespace PgsBoard.Repositories
 {
     public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey>
     {
-        private readonly DbContext _context;
+        protected readonly DbContext _context;
 
         public Repository(DbContext context)
         {

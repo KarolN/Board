@@ -2,6 +2,7 @@ using System;
 using System.Data.Entity;
 using System.Runtime.InteropServices;
 using System.Web;
+using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
@@ -15,6 +16,7 @@ using PgsBoard.Services;
 using PgsBoard.Services.Implementation;
 using Microsoft.Owin.Host.SystemWeb;
 using PgsBoard.Infrastructure;
+using PgsBoard.Repositories;
 
 namespace PgsBoard
 {
@@ -35,6 +37,7 @@ namespace PgsBoard
         public static void RegisterTypes(IUnityContainer container)
         {
             RegisterDBContext(container);
+            RegisterRepositories(container);
             RegisterAuthInfrastructure(container);
             RegisterServices(container);
             RegisterInfrastructure(container);
@@ -43,6 +46,7 @@ namespace PgsBoard
         private static void RegisterServices(IUnityContainer container)
         {
             container.RegisterType<IAuthService, AuthService>();
+            container.RegisterType<IBoardsService, BoardsService>();
         }
 
         private static void RegisterDBContext(IUnityContainer container)
@@ -57,11 +61,17 @@ namespace PgsBoard
             container.RegisterType<SignInManager<ApplicationUser, string>, ApplicationSignInManager>();
             container.RegisterType<IAuthenticationManager>(
                 new InjectionFactory(c => HttpContext.Current.GetOwinContext().Authentication));
+            container.RegisterType<IMapper>(new InjectionFactory(c => AutoMapperConfigurartion.CreateMapper()));
         }
 
         private static void RegisterInfrastructure(IUnityContainer container)
         {
             container.RegisterType<IAuthInfrastructure, Infrastructure.AuthInfrastructure>();
+        }
+
+        private static void RegisterRepositories(IUnityContainer container)
+        {
+            container.RegisterType<IBoardsRepository, BoardsRepository>();
         }
     }
 }
