@@ -1,0 +1,33 @@
+﻿@model PgsBoard.ViewModels.MainPageViewModel
+
+@{
+}
+
+<div class="container">
+    <header class="row">
+        <h2>Twoje tablice</h2>
+    </header>
+    <main class="row">
+        <section class="col-md-6">
+            <div class="container-fluid">
+                @using (Html.BeginForm("Show","Board", method: FormMethod.Get))
+                {
+                    <div class="row">
+                        <h3 class="col-md-12">Wybierz tablicę:</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10">
+                            @Html.DropDownListFor(model => model.UserBoards, Model.UserBoards, new {@class = "form-control", @Name="selectedBoard"})
+                        </div>
+                        <div class="col-md-2">
+                            <input type="submit" class="btn btn-primary" value="Przejdź"/>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+        <section class="col-md-6">
+            @Html.Partial("_CreateBoardForm", Model.CreateBoardDto)
+        </section>
+    </main>
+</div>

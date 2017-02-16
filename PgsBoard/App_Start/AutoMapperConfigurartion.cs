@@ -21,7 +21,7 @@ namespace PgsBoard
 
         private static void CreateMappings(IMapperConfigurationExpression cfg)
         {
-            cfg.CreateMap<Board, UserBoardsSelectionViewModel>();
+
         }
     }
 }

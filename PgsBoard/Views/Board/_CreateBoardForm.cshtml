@@ -1,0 +1,31 @@
+﻿@model PgsBoard.Dtos.CreateBoardDto
+
+
+<div class="container-fluid cart--white">
+@using (Html.BeginForm("Create", "Board", method: FormMethod.Post))
+{
+    <div class="row">
+        <h3 class="col-md-12">Dodaj nową tablicę:</h3>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 form-group">
+            @Html.LabelFor(m => m.Description)
+            @Html.TextAreaFor(m => m.Description, new {@class = "form-control"})
+            @Html.ValidationMessageFor(m => m.Description)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="submit" class="btn btn-primary" value="Dodaj"/>
+        </div>
+    </div>
+    @Html.AntiForgeryToken()
+}
+</div>

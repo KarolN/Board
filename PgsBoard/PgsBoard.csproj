@@ -165,6 +165,7 @@
     <Compile Include="AuthInfrastructure\ApplicationUserManager.cs" />
     <Compile Include="AuthInfrastructure\ApplicationUserStore.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BoardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\DatabaseContext.cs" />
     <Compile Include="Data\Entities\ApplicationUser.cs" />
@@ -172,6 +173,7 @@
     <Compile Include="Data\Entities\Cart.cs" />
     <Compile Include="Data\Entities\IEntity.cs" />
     <Compile Include="Data\Entities\List.cs" />
+    <Compile Include="Dtos\CreateBoardDto.cs" />
     <Compile Include="Dtos\LoginDto.cs" />
     <Compile Include="Dtos\RegisterUserDto.cs" />
     <Compile Include="Global.asax.cs" />
@@ -190,7 +192,6 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\UserBoardsSelectionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -220,8 +221,10 @@
     <Content Include="Scripts\site.js" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Board\Index.cshtml" />
+    <Content Include="Views\Board\Show.cshtml" />
+    <Content Include="Views\Board\_CreateBoardForm.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\LoggedInIndex.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />

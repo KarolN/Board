@@ -19,12 +19,11 @@ namespace PgsBoard.Controllers
             _boardsService = boardsService;
         }
 
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
             {
-                var mainPageViewModel = await _boardsService.GetMainPageViewModel();
-                return View("LoggedInIndex", mainPageViewModel);
+                return RedirectToAction("Index", "Board");
             }
             return View();
         }

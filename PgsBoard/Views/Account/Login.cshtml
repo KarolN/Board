@@ -3,23 +3,31 @@
 @{
     ViewBag.Title = "Login";
 }
-
-@using (Html.BeginForm("Login", "Account", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    <article class="container">
-        <section class="row form-group">
-            @Html.LabelFor(m => m.LoginDto.Username)
-            @Html.TextBoxFor(m => m.LoginDto.Username, new {@class = "form-control"})
-            @Html.ValidationMessageFor(m => m.LoginDto.Username)
-        </section>
-        <section class="row form-group">
-            @Html.LabelFor(m => m.LoginDto.Password)
-            @Html.TextBoxFor(m => m.LoginDto.Password, new {@class = "form-control"})
-            @Html.ValidationMessageFor(m => m.LoginDto.Password)
-        </section>
-        <section class="row">
-            <input class="btn btn-primary" type="submit" value="Zarejestruj"/>
-        </section>
-    </article>
-}
+<div class="container">
+    <div class="row">
+        <h2 class="col-md-6">Zaloguj się</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <article class="container-fluid cart--gray">
+                    <section class="row form-group">
+                        @Html.LabelFor(m => m.LoginDto.Username)
+                        @Html.TextBoxFor(m => m.LoginDto.Username, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.LoginDto.Username)
+                    </section>
+                    <section class="row form-group">
+                        @Html.LabelFor(m => m.LoginDto.Password)
+                        @Html.PasswordFor(m => m.LoginDto.Password, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.LoginDto.Password)
+                    </section>
+                    <section class="row">
+                        <input class="btn btn-primary" type="submit" value="Zarejestruj"/>
+                    </section>
+                </article>
+            }
+        </div>
+    </div>
+</div>

@@ -2,3 +2,17 @@
 .navbar__button--login {
     margin-top: 6px;
 }
+
+.cart--gray {
+    background-color: #eeeeee;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px 0px;
+}
+
+.cart--white {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 1px 0px;
+}
