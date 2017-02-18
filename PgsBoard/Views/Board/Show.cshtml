@@ -1,8 +1,23 @@
-﻿@model dynamic
+﻿@using PgsBoard.Dtos
+@model PgsBoard.ViewModels.ShowBoardViewModel
 
 @{
 
 }
 
-<h2>title</h2>
-@Model
+<div class="container-fluid">
+    <header class="row">
+        <h1 class="col-md-3 col-md-offset-1">@Model.Name</h1>
+    </header>
+    <main class="row">
+        <div class="col-md-12">
+            <div class="board">
+                @foreach (var list in Model.Lists)
+                {
+                    @Html.Partial("_List", list)
+                }
+                @Html.Partial("_CreateListForm", Model.CreateListDto)
+            </div>
+        </div>
+    </main>
+</div>

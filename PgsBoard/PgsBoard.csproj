@@ -174,6 +174,8 @@
     <Compile Include="Data\Entities\IEntity.cs" />
     <Compile Include="Data\Entities\List.cs" />
     <Compile Include="Dtos\CreateBoardDto.cs" />
+    <Compile Include="Dtos\CreateCartDto.cs" />
+    <Compile Include="Dtos\CreateListDto.cs" />
     <Compile Include="Dtos\LoginDto.cs" />
     <Compile Include="Dtos\RegisterUserDto.cs" />
     <Compile Include="Global.asax.cs" />
@@ -189,9 +191,12 @@
     <Compile Include="Services\Implementation\AuthService.cs" />
     <Compile Include="Services\Implementation\BoardsService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\CartViewModel.cs" />
+    <Compile Include="ViewModels\ListViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
+    <Compile Include="ViewModels\ShowBoardViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -214,6 +219,7 @@
     <Content Include="packages.config" />
     <Content Include="Scripts\bootstrap\bootstrap.js" />
     <Content Include="Scripts\bootstrap\bootstrap.min.js" />
+    <Content Include="Scripts\createCart.js" />
     <Content Include="Scripts\jquery\jquery-1.9.1-vsdoc.js" />
     <Content Include="Scripts\jquery\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery\jquery-1.9.1.min.js" />
@@ -223,7 +229,11 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Board\Index.cshtml" />
     <Content Include="Views\Board\Show.cshtml" />
+    <Content Include="Views\Board\_Cart.cshtml" />
     <Content Include="Views\Board\_CreateBoardForm.cshtml" />
+    <Content Include="Views\Board\_CreateCartForm.cshtml" />
+    <Content Include="Views\Board\_CreateListForm.cshtml" />
+    <Content Include="Views\Board\_List.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />

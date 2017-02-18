@@ -1,0 +1,14 @@
+﻿@model PgsBoard.Dtos.CreateListDto
+
+<section class="list">
+    @using (Html.BeginForm("", "", method: FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.BoardId)
+        <div class="form-group">
+            @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "Dodaj listę"})
+        </div>
+        <div>
+            <input type="submit" class="btn btn-success" value="Dodaj listę"/>
+        </div>
+    }
+</section>

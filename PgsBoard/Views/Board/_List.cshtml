@@ -1,0 +1,15 @@
+﻿@model PgsBoard.ViewModels.ListViewModel
+
+<section class="list">
+    <header class="list__header">
+        <h4>@Model.Name</h4>
+    </header>
+    <div>
+        @foreach (var cart in Model.Carts)
+        {
+            @Html.Partial("_Cart", cart)
+        }
+        @Html.Partial("_CreateCartForm", Model.CreateCartDto)
+    </div>
+
+</section>

@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using PgsBoard.Dtos;
 using PgsBoard.Services;
+using PgsBoard.ViewModels;
 
 namespace PgsBoard.Controllers
 {
@@ -38,7 +39,8 @@ namespace PgsBoard.Controllers
 
         public async Task<ActionResult> Show(string selectedBoard)
         {
-            return View("Show");
+
+            return View(new ShowBoardViewModel());
         }
     }
 }

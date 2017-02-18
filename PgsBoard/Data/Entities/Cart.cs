@@ -13,6 +13,8 @@ namespace PgsBoard.Data.Entities
 
         public string Description { get; set; }
 
+        public int Position { get; set; }
+
         public List List { get; set; }
 
         public long ListId { get; set; }

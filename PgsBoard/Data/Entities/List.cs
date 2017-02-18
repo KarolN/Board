@@ -16,6 +16,8 @@ namespace PgsBoard.Data.Entities
 
         public long BoardId { get; set; }
 
+        public int Position { get; set; }
+
         public ICollection<Cart> Carts { get; set; }
     }
 }
