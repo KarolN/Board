@@ -14,6 +14,7 @@ namespace PgsBoard.Data
 
         public DatabaseContext() : base("defaultConnection")
         {
+            Configuration.LazyLoadingEnabled = false;
         }
     }
 }

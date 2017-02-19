@@ -23,7 +23,7 @@ namespace PgsBoard.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Board");
+                return RedirectToAction("Index", "Boards");
             }
             return View();
         }

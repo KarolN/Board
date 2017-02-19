@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using AutoMapper;
@@ -48,6 +49,18 @@ namespace PgsBoard.Services.Implementation
             };
             _boardsRepository.Insert(board);
             await _boardsRepository.SaveChangesOnContext();
+        }
+
+        public async Task<ShowBoardViewModel> GetBoard(long selectedBoardId)
+        {
+            var board = await _boardsRepository.GetBoardWithListsAndCarts(selectedBoardId);
+            if (board == null)
+            {
+                return null;
+            }
+
+            var showBoardViewModel = _mapper.Map<Board, ShowBoardViewModel>(board);
+            return showBoardViewModel;
         }
     }
 }

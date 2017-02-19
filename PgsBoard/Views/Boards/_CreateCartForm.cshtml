@@ -4,14 +4,14 @@
     <button class="btn btn-success pull-right">Dodaj kartę</button>
 </div>
 <div class="cart cart--editor clearfix element--is-hidden">
-    @using (Html.BeginForm("", "", method: FormMethod.Post))
+    @using (Html.BeginForm("Create", "Carts", method: FormMethod.Post))
     {
         @Html.HiddenFor(m => m.ListId)
         <div class="form-group cart__header">
             @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "Nazwa"})
         </div>
         <div class="form-group cart__body">
-            @Html.TextAreaFor(m => m.Name, new {@class = "form-control", placeholder = "Opis"})
+            @Html.TextAreaFor(m => m.Description, new {@class = "form-control", placeholder = "Opis"})
         </div>
         <div>
             <input type="submit" value="Dodaj" class="btn btn-primary pull-right"/>

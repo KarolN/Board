@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.Configuration;
 using PgsBoard.Data.Entities;
+using PgsBoard.Dtos;
 using PgsBoard.ViewModels;
 
 namespace PgsBoard
@@ -21,7 +22,11 @@ namespace PgsBoard
 
         private static void CreateMappings(IMapperConfigurationExpression cfg)
         {
-
+            cfg.CreateMap<Cart, CartViewModel>();
+            cfg.CreateMap<List, ListViewModel>()
+                .ForMember(x => x.CreateCartDto, opt => opt.MapFrom(o => new CreateCartDto() {ListId = o.Id}));
+            cfg.CreateMap<Board, ShowBoardViewModel>()
+                .ForMember(x => x.CreateListDto, opt => opt.MapFrom(o => new CreateListDto() {BoardId = o.Id}));
         }
     }
 }

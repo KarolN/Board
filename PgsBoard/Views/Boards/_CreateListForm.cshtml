@@ -1,7 +1,7 @@
 ﻿@model PgsBoard.Dtos.CreateListDto
 
 <section class="list">
-    @using (Html.BeginForm("", "", method: FormMethod.Post))
+    @using (Html.BeginForm("Create", "Lists", method: FormMethod.Post))
     {
         @Html.HiddenFor(m => m.BoardId)
         <div class="form-group">

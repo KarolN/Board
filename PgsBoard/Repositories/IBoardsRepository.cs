@@ -7,5 +7,6 @@ namespace PgsBoard.Repositories
     public interface IBoardsRepository : IRepository<Board, long>
     {
         Task<List<Board>> GetUserBoards(string currentUserId);
+        Task<Board> GetBoardWithListsAndCarts(long selectedBoardId);
     }
 }

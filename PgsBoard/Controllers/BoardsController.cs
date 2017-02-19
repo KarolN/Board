@@ -7,11 +7,11 @@ using PgsBoard.ViewModels;
 namespace PgsBoard.Controllers
 {
     [Authorize]
-    public class BoardController : Controller
+    public class BoardsController : Controller
     {
         private readonly IBoardsService _boardsService;
 
-        public BoardController(IBoardsService boardsService)
+        public BoardsController(IBoardsService boardsService)
         {
             _boardsService = boardsService;
         }
@@ -37,10 +37,21 @@ namespace PgsBoard.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public async Task<ActionResult> Show(string selectedBoard)
         {
+            long selectedBoardId;
+            if (!long.TryParse(selectedBoard, out selectedBoardId))
+            {
+                return new HttpNotFoundResult();
+            }
 
-            return View(new ShowBoardViewModel());
+            var viewModel = await _boardsService.GetBoard(selectedBoardId);
+            if (viewModel == null)
+            {
+                return new HttpNotFoundResult();
+            }
+            return View(viewModel);
         }
     }
 }

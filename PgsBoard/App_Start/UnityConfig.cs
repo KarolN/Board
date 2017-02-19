@@ -47,6 +47,8 @@ namespace PgsBoard
         {
             container.RegisterType<IAuthService, AuthService>();
             container.RegisterType<IBoardsService, BoardsService>();
+            container.RegisterType<IListsService, ListsService>();
+            container.RegisterType<ICartsService, CartsService>();
         }
 
         private static void RegisterDBContext(IUnityContainer container)
@@ -72,6 +74,8 @@ namespace PgsBoard
         private static void RegisterRepositories(IUnityContainer container)
         {
             container.RegisterType<IBoardsRepository, BoardsRepository>();
+            container.RegisterType<IListsRepository, ListsRepository>();
+            container.RegisterType<ICartsRepository, CartsRepository>();
         }
     }
 }

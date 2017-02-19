@@ -18,5 +18,14 @@ namespace PgsBoard.Repositories
             var boards = await _context.Set<Board>().Where(x => x.OwnerId == currentUserId).ToListAsync();
             return boards;
         }
+
+        public async Task<Board> GetBoardWithListsAndCarts(long selectedBoardId)
+        {
+            var board = await _context.Set<Board>()
+                .Include(x => x.Lists)
+                .Include(x => x.Lists.Select(l => l.Carts))
+                .SingleOrDefaultAsync(x => x.Id == selectedBoardId);
+            return board;
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace PgsBoard.Repositories
         public async Task<TEntity> GetEntity(TKey id)
         {
             var set = GetDbSet();
-            var entity = await set.SingleOrDefaultAsync(x => x.Id.Equals(id));
+            var entity = await set.FindAsync(id);
             return entity;
         }
 

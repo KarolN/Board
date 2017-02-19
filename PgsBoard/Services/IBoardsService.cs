@@ -8,5 +8,6 @@ namespace PgsBoard.Services
     {
         Task<MainPageViewModel> GetMainPageViewModel();
         Task CreateBoard(CreateBoardDto createBoardDto);
+        Task<ShowBoardViewModel> GetBoard(long selectedBoardId);
     }
 }
