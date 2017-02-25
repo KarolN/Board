@@ -5,12 +5,11 @@
         <h4 class="pull-left">@Model.Name</h4>
         <i class="fa fa-trash-o trash pull-right list__remove-list-btn" data-list-id="@Model.Id"></i>
     </header>
-    <div>
+    <div class="list__carts-container ui-sortable" data-list-id="@Model.Id">
         @foreach (var cart in Model.Carts)
         {
             @Html.Partial("_Cart", cart)
         }
-        @Html.Partial("_CreateCartForm", Model.CreateCartDto)
     </div>
-
+    @Html.Partial("_CreateCartForm", Model.CreateCartDto)
 </section>

@@ -9,7 +9,8 @@ namespace PgsBoard
             bundles.Add(new StyleBundle("~/bundles/bootstrap")
                 .IncludeDirectory("~/Content/css/bootstrap", "*.css", true));
             bundles.Add(new ScriptBundle("~/bundles/site")
-                .IncludeDirectory("~/Content/css/site", "*.css", true));
+                .IncludeDirectory("~/Content/css/site", "*.css", true)
+                .IncludeDirectory("~/Content/css/jquery-ui", "*.css", true));
 
             bundles.Add(new ScriptBundle("~/bundles/scripts/jquery")
                 .IncludeDirectory("~/Scripts/jquery", "*.js"));

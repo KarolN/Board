@@ -7,5 +7,7 @@ namespace PgsBoard.Services
     {
         Task<long> CreateCart(CreateCartDto createCartDto);
         Task<bool> RemoveCart(long cartId);
+        Task UpdateCartPosition(UpdateCartPositionDto updateCartPositionDto);
+        Task MoveCart(MoveCartDto moveCartDto);
     }
 }

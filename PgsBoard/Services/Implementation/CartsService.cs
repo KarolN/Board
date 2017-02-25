@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using PgsBoard.Data.Entities;
 using PgsBoard.Dtos;
 using PgsBoard.Infrastructure;
@@ -61,6 +63,52 @@ namespace PgsBoard.Services.Implementation
             _cartsRepository.Remove(cart);
             await _cartsRepository.SaveChangesOnContext();
             return true;
+        }
+
+        public async Task UpdateCartPosition(UpdateCartPositionDto updateCartPositionDto)
+        {
+            var cart = await _cartsRepository.GetEntity(updateCartPositionDto.CartId);
+            if (cart == null)
+            {
+                return;
+            }
+            var list = await _listsRepository.GetListWithCarts(cart.ListId);
+
+            var cartInNewPosition = list.Carts.Single(x => x.Position == updateCartPositionDto.NewPosition);
+            cartInNewPosition.Position = cart.Position;
+            cart.Position = updateCartPositionDto.NewPosition;
+            await _cartsRepository.SaveChangesOnContext();
+        }
+
+        public async Task MoveCart(MoveCartDto moveCartDto)
+        {
+            var cart = await _cartsRepository.GetEntity(moveCartDto.CartId);
+            if (cart == null)
+            {
+                return;
+            }
+            var oldList = await _listsRepository.GetListWithCarts(cart.ListId);
+            var newList = await _listsRepository.GetListWithCarts(moveCartDto.NewListId);
+
+            cart = oldList.Carts.Single(x => x.Id == cart.Id);
+            oldList.Carts.Remove(cart);
+
+            this.NormalizeCartsPositionNumeration(oldList.Carts);
+
+            newList.Carts.Add(cart);
+            cart.Position = moveCartDto.NewPosition - 1;
+            this.NormalizeCartsPositionNumeration(newList.Carts);
+
+            await _cartsRepository.SaveChangesOnContext();
+        }
+
+        private void NormalizeCartsPositionNumeration(ICollection<Cart> carts)
+        {
+            var orderedCarts = carts.OrderBy(x => x.Position).ToList();
+            for (int i = 0; i < orderedCarts.Count; i++)
+            {
+                orderedCarts[i].Position = i;
+            }
         }
     }
 }

@@ -53,7 +53,7 @@ namespace PgsBoard
 
         private static void RegisterDBContext(IUnityContainer container)
         {
-            container.RegisterType<DbContext, DatabaseContext>();
+            container.RegisterType<DbContext, DatabaseContext>(new PerRequestLifetimeManager());
         }
 
         private static void RegisterAuthInfrastructure(IUnityContainer container)

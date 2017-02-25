@@ -1,6 +1,6 @@
 ﻿@model PgsBoard.ViewModels.CartViewModel
 
-<div class="cart" data-cart-id="@Model.Id">
+<div class="cart" data-cart-id="@Model.Id" data-cart-position="@Model.Position">
     <div class="cart__header clearfix">
         <h5 class="pull-left">@Model.Name</h5>
         <i class="fa fa-trash-o trash pull-right cart__remove-cart-btn" data-cart-id="@Model.Id"></i>

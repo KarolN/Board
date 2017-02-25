@@ -30,5 +30,19 @@ namespace PgsBoard.Controllers
             var result = await _cartsService.RemoveCart(cartId);
             return result ? null : new HttpStatusCodeResult(400);
         }
+
+        [HttpPost]
+        public async Task<ActionResult> UpdatePosition(UpdateCartPositionDto updateCartPositionDto)
+        {
+            await _cartsService.UpdateCartPosition(updateCartPositionDto);
+            return new HttpStatusCodeResult(200);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Move(MoveCartDto moveCartDto)
+        {
+            await _cartsService.MoveCart(moveCartDto);
+            return new HttpStatusCodeResult(200);
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿using System.Linq;
+using AutoMapper;
 using AutoMapper.Configuration;
 using PgsBoard.Data.Entities;
 using PgsBoard.Dtos;
@@ -24,7 +25,8 @@ namespace PgsBoard
         {
             cfg.CreateMap<Cart, CartViewModel>();
             cfg.CreateMap<List, ListViewModel>()
-                .ForMember(x => x.CreateCartDto, opt => opt.MapFrom(o => new CreateCartDto() {ListId = o.Id}));
+                .ForMember(x => x.CreateCartDto, opt => opt.MapFrom(o => new CreateCartDto() {ListId = o.Id}))
+                .ForMember(x => x.Carts, opt => opt.MapFrom(s => s.Carts.OrderBy(c => c.Position)));
             cfg.CreateMap<Board, ShowBoardViewModel>()
                 .ForMember(x => x.CreateListDto, opt => opt.MapFrom(o => new CreateListDto() {BoardId = o.Id}));
         }

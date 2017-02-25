@@ -16,5 +16,11 @@ namespace PgsBoard.Repositories
             var count = await _context.Set<List>().CountAsync(x => x.BoardId == boardId);
             return count;
         }
+
+        public async Task<List> GetListWithCarts(long cartListId)
+        {
+            var list = await _context.Set<List>().Include(x => x.Carts).SingleAsync(x => x.Id == cartListId);
+            return list;
+        }
     }
 }

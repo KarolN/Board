@@ -47,6 +47,10 @@ body {
     font-weight: 800;
 }
 
+.list__carts-container {
+    min-height: 50px;
+}
+
 .cart {
     background-color: #ffffff;
     width: 100%;
