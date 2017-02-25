@@ -3,6 +3,7 @@
 <section class="list">
     @using (Html.BeginForm("Create", "Lists", method: FormMethod.Post))
     {
+        @Html.AntiForgeryToken()
         @Html.HiddenFor(m => m.BoardId)
         <div class="form-group">
             @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "Dodaj listę"})

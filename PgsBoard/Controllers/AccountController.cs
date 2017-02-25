@@ -44,7 +44,6 @@ namespace PgsBoard.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login([Bind(Prefix = "LoginDto")] LoginDto loginDto)
         {
             if (ModelState.IsValid)

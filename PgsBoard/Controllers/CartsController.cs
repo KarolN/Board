@@ -5,6 +5,7 @@ using PgsBoard.Services;
 
 namespace PgsBoard.Controllers
 {
+    [Authorize]
     public class CartsController : Controller
     {
         private readonly ICartsService _cartsService;
@@ -15,10 +16,19 @@ namespace PgsBoard.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Create(CreateCartDto createCartDto)
         {
             var boardId = await _cartsService.CreateCart(createCartDto);
             return RedirectToAction("Show", "Boards", new {selectedBoard = boardId});
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Remove(long cartId)
+        {
+            var result = await _cartsService.RemoveCart(cartId);
+            return result ? null : new HttpStatusCodeResult(400);
         }
     }
 }

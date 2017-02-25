@@ -6,5 +6,6 @@ namespace PgsBoard.Services
     public interface ICartsService
     {
         Task<long> CreateCart(CreateCartDto createCartDto);
+        Task<bool> RemoveCart(long cartId);
     }
 }

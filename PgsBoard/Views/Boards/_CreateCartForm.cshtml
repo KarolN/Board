@@ -6,6 +6,7 @@
 <div class="cart cart--editor clearfix element--is-hidden">
     @using (Html.BeginForm("Create", "Carts", method: FormMethod.Post))
     {
+        @Html.AntiForgeryToken()
         @Html.HiddenFor(m => m.ListId)
         <div class="form-group cart__header">
             @Html.TextBoxFor(m => m.Name, new {@class = "form-control", placeholder = "Nazwa"})

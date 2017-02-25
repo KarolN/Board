@@ -75,3 +75,7 @@ body {
 .element--is-hidden {
     display: none;
 }
+
+.trash {
+    cursor: pointer;
+}

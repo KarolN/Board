@@ -1,8 +1,9 @@
 ﻿@model PgsBoard.ViewModels.ListViewModel
 
-<section class="list">
-    <header class="list__header">
-        <h4>@Model.Name</h4>
+<section class="list" data-list-id="@Model.Id">
+    <header class="list__header clearfix">
+        <h4 class="pull-left">@Model.Name</h4>
+        <i class="fa fa-trash-o trash pull-right list__remove-list-btn" data-list-id="@Model.Id"></i>
     </header>
     <div>
         @foreach (var cart in Model.Carts)

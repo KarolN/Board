@@ -5,6 +5,8 @@ namespace PgsBoard.ViewModels
 {
     public class ListViewModel
     {
+        public long Id { get; set; }
+        
         public string Name { get; set; }
 
         public List<CartViewModel> Carts { get; set; }

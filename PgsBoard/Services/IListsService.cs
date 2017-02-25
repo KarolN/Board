@@ -6,5 +6,6 @@ namespace PgsBoard.Services
     public interface IListsService
     {
         Task<long?> CreateNewList(CreateListDto createListDto);
+        Task<bool> RemoveList(long listId);
     }
 }

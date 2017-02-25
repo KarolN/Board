@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PgsBoard.Data.Entities;
 using PgsBoard.Dtos;
+using PgsBoard.Infrastructure;
 using PgsBoard.Repositories;
 
 namespace PgsBoard.Services.Implementation
@@ -9,11 +10,18 @@ namespace PgsBoard.Services.Implementation
     {
         private readonly ICartsRepository _cartsRepository;
         private readonly IListsRepository _listsRepository;
+        private readonly IBoardsRepository _boardsRepository;
+        private readonly IAuthInfrastructure _authInfrastructure;
 
-        public CartsService(ICartsRepository cartsRepository, IListsRepository listsRepository)
+        public CartsService(ICartsRepository cartsRepository,
+            IListsRepository listsRepository,
+            IBoardsRepository boardsRepository,
+            IAuthInfrastructure authInfrastructure)
         {
             _cartsRepository = cartsRepository;
             _listsRepository = listsRepository;
+            _boardsRepository = boardsRepository;
+            _authInfrastructure = authInfrastructure;
         }
 
         public async Task<long> CreateCart(CreateCartDto createCartDto)
@@ -33,6 +41,26 @@ namespace PgsBoard.Services.Implementation
 
             var list = await _listsRepository.GetEntity(createCartDto.ListId);
             return list.BoardId;
+        }
+
+        public async Task<bool> RemoveCart(long cartId)
+        {
+            var cart = await _cartsRepository.GetEntity(cartId);
+            if (cart == null)
+            {
+                return false;
+            }
+            var list = await _listsRepository.GetEntity(cart.ListId);
+            var board = await _boardsRepository.GetEntity(list.BoardId);
+            var currentUserId = _authInfrastructure.GetCurrentUserId();
+            if (currentUserId != board.OwnerId)
+            {
+                return false;
+            }
+
+            _cartsRepository.Remove(cart);
+            await _cartsRepository.SaveChangesOnContext();
+            return true;
         }
     }
 }

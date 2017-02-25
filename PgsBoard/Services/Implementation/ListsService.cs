@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using PgsBoard.Data.Entities;
 using PgsBoard.Dtos;
+using PgsBoard.Infrastructure;
 using PgsBoard.Repositories;
 
 namespace PgsBoard.Services.Implementation
@@ -9,11 +10,15 @@ namespace PgsBoard.Services.Implementation
     {
         private readonly IListsRepository _listsRepository;
         private readonly IBoardsRepository _boardsRepository;
+        private readonly IAuthInfrastructure _authInfrastructure;
 
-        public ListsService(IListsRepository listsRepository, IBoardsRepository boardsRepository)
+        public ListsService(IListsRepository listsRepository,
+            IBoardsRepository boardsRepository,
+            IAuthInfrastructure authInfrastructure)
         {
             _listsRepository = listsRepository;
             _boardsRepository = boardsRepository;
+            _authInfrastructure = authInfrastructure;
         }
 
         public async Task<long?> CreateNewList(CreateListDto createListDto)
@@ -30,6 +35,25 @@ namespace PgsBoard.Services.Implementation
             await _listsRepository.SaveChangesOnContext();
 
             return createListDto.BoardId;
+        }
+
+        public async Task<bool> RemoveList(long listId)
+        {
+            var list = await _listsRepository.GetEntity(listId);
+            if (list == null)
+            {
+                return false;
+            }
+            var board = await _boardsRepository.GetEntity(list.BoardId);
+            var currentUserId = _authInfrastructure.GetCurrentUserId();
+            if (currentUserId != board.OwnerId)
+            {
+                return false;
+            }
+
+            _listsRepository.Remove(list);
+            await _listsRepository.SaveChangesOnContext();
+            return true;
         }
     }
 }

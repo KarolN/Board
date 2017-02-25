@@ -234,7 +234,10 @@
     <Content Include="Scripts\jquery\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery\jquery-1.9.1.min.js" />
     <Content Include="Scripts\jquery\jquery-1.9.1.min.map" />
+    <Content Include="Scripts\removeCart.js" />
+    <Content Include="Scripts\removeList.js" />
     <Content Include="Scripts\site.js" />
+    <Content Include="Scripts\utils.js" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Boards\Index.cshtml" />
