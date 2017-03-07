@@ -13,7 +13,7 @@ namespace PgsBoard.Dtos
         public string Password { get; set; }
         [DisplayName("Email")]
         [Required]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage = "Nieprawidłowy adres e-mail")]
         public string Email { get; set; }
     }
 }
