@@ -7,8 +7,7 @@
             NewPosition: newPosition
         }
         $.post("/carts/updatePosition", data, function(){
-            $(sortableElement).sortable("enable");
-            $(".cart").draggable("enable");
+            initializeDraggable();
         });
     }
 
@@ -19,8 +18,7 @@
             NewListId: newListId
         };
         $.post("/carts/move", data, function(){
-            $(sortableElement).sortable("enable");
-            $(".cart").draggable("enable");
+            initializeDraggable();
         });
     }
 
@@ -59,9 +57,8 @@
     var startList;
 
     function onDraggingStop(event, ui){
-        $(sortableElement).sortable("disable");
-        $(".cart").draggable("disable");
         var item = ui.item;
+        initializeDraggable();
         var stopListId = item.parent().data("listId");
         if(startList == undefined || startList.data("listId") === stopListId){
             changeSortPositionOfItem(item);
@@ -74,20 +71,26 @@
         startList = ui.helper.parent();
     }
 
-    $(function(){
-        var sortableOptions = {
-            axis: "y",
-            stop: onDraggingStop
-        };
-        $(".list__carts-container").sortable(sortableOptions);
-
+    function initializeDraggable(){
         var draggableOptions = {
-                connectToSortable: sortableElement,
-                start: onStart,
-                revert: "invalid"
+            connectToSortable: sortableElement,
+            start: onStart,
+            revert: "invalid"
         }
 
         $(".cart").draggable(draggableOptions);
+        $( ".cart" ).draggable( "destroy" );
+        $(".cart").draggable(draggableOptions);
+    }
+
+    $(function(){
+        var sortableOptions = {
+            axis: "y",
+            stop: onDraggingStop,
+            connectWith: ".list__carts-container"
+        };
+        $(".list__carts-container").sortable(sortableOptions);
+        initializeDraggable();
     });
 
 })(jQuery);
